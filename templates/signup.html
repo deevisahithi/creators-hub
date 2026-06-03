@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Creator Hub Signup</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+height:100vh;
+display:flex;
+overflow:hidden;
+}
+
+.left{
+width:50%;
+background:linear-gradient(135deg,#2563eb,#7c3aed);
+color:white;
+display:flex;
+justify-content:center;
+align-items:center;
+padding:50px;
+}
+
+.left-content h1{
+font-size:55px;
+margin-bottom:20px;
+}
+
+.left-content p{
+font-size:20px;
+line-height:35px;
+}
+
+.right{
+width:50%;
+background:#f4f7fc;
+display:flex;
+justify-content:center;
+align-items:center;
+}
+
+.signup-box{
+width:450px;
+background:white;
+padding:40px;
+border-radius:15px;
+box-shadow:0 5px 20px rgba(0,0,0,0.1);
+}
+
+.signup-box h2{
+text-align:center;
+color:#2563eb;
+margin-bottom:25px;
+}
+
+input{
+width:100%;
+padding:14px;
+margin-top:12px;
+border:1px solid #ddd;
+border-radius:8px;
+}
+
+button{
+width:100%;
+padding:14px;
+margin-top:20px;
+background:#2563eb;
+color:white;
+border:none;
+border-radius:8px;
+font-size:16px;
+cursor:pointer;
+}
+
+button:hover{
+background:#1d4ed8;
+}
+
+.login-link{
+text-align:center;
+margin-top:15px;
+}
+
+.login-link a{
+text-decoration:none;
+color:#2563eb;
+font-weight:bold;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="left">
+
+<div class="left-content">
+
+<h1>Creator Hub 🚀</h1>
+
+<p>
+Connect with creators worldwide.<br><br>
+
+Find editors, designers and developers.<br><br>
+
+Build projects together.<br><br>
+
+Grow your audience and opportunities.
+</p>
+
+</div>
+
+</div>
+
+<div class="right">
+
+<div class="signup-box">
+
+<h2>Create Account</h2>
+
+<input
+type="text"
+id="name"
+placeholder="Full Name">
+
+<input
+type="email"
+id="email"
+placeholder="Email">
+
+<input
+type="password"
+id="password"
+placeholder="Password">
+
+<input
+type="password"
+id="confirmPassword"
+placeholder="Confirm Password">
+
+<button onclick="signup()">
+Create Account
+</button>
+
+<div class="login-link">
+
+Already have an account?
+
+<a href="https://finicky-flyover-baggie.ngrok-free.dev/login-page">
+Login Here
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+async function signup(){
+
+const password =
+document.getElementById("password").value;
+
+const confirmPassword =
+document.getElementById("confirmPassword").value;
+
+if(password !== confirmPassword){
+
+alert("Passwords do not match");
+
+return;
+}
+
+const data = {
+
+name:
+document.getElementById("name").value,
+
+email:
+document.getElementById("email").value,
+
+password: password
+
+};
+
+const res = await fetch(
+"https://finicky-flyover-baggie.ngrok-free.dev/signup",
+{
+method:"POST",
+
+headers:{
+"Content-Type":"application/json"
+},
+
+body:JSON.stringify(data)
+
+});
+
+const result =
+await res.json();
+
+alert(result.message);
+
+if(res.ok){
+
+window.location.href =
+"https://finicky-flyover-baggie.ngrok-free.dev/login-page";
+
+}
+
+}
+
+</script>
+
+</body>
+</html>

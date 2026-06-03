@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Creator Hub Login</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+height:100vh;
+display:flex;
+overflow:hidden;
+}
+
+.left{
+width:50%;
+background:linear-gradient(135deg,#2563eb,#7c3aed);
+color:white;
+display:flex;
+justify-content:center;
+align-items:center;
+padding:50px;
+}
+
+.left-content h1{
+font-size:55px;
+margin-bottom:20px;
+}
+
+.left-content p{
+font-size:20px;
+line-height:35px;
+}
+
+.right{
+width:50%;
+background:#f4f7fc;
+display:flex;
+justify-content:center;
+align-items:center;
+}
+
+.login-box{
+width:420px;
+background:white;
+padding:40px;
+border-radius:15px;
+box-shadow:0 5px 20px rgba(0,0,0,0.1);
+}
+
+.login-box h2{
+text-align:center;
+color:#2563eb;
+margin-bottom:25px;
+}
+
+input{
+width:100%;
+padding:14px;
+margin-top:12px;
+border:1px solid #ddd;
+border-radius:8px;
+}
+
+button{
+width:100%;
+padding:14px;
+margin-top:20px;
+background:#2563eb;
+color:white;
+border:none;
+border-radius:8px;
+font-size:16px;
+cursor:pointer;
+}
+
+button:hover{
+background:#1d4ed8;
+}
+
+.signup-link{
+text-align:center;
+margin-top:15px;
+}
+
+.signup-link a{
+text-decoration:none;
+color:#2563eb;
+font-weight:bold;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="left">
+
+<div class="left-content">
+
+<h1>Creator Hub 🚀</h1>
+
+<p>
+🎥 Find Content Creators<br><br>
+
+🎬 Connect With Editors<br><br>
+
+🎨 Discover Designers<br><br>
+
+💻 Collaborate With Developers<br><br>
+
+🤝 Build Amazing Projects Together
+</p>
+
+</div>
+
+</div>
+
+<div class="right">
+
+<div class="login-box">
+
+<h2>Login</h2>
+
+<input
+type="email"
+id="email"
+placeholder="Enter Email">
+
+<input
+type="password"
+id="password"
+placeholder="Enter Password">
+
+<button onclick="login()">
+Login
+</button>
+
+<div class="signup-link">
+
+Don't have an account?
+
+<a href="https://finicky-flyover-baggie.ngrok-free.dev/">
+Signup Here
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+async function login(){
+
+const data = {
+
+email:
+document.getElementById("email").value,
+
+password:
+document.getElementById("password").value
+
+};
+
+try{
+
+const res = await fetch(
+"https://finicky-flyover-baggie.ngrok-free.dev/login",
+{
+method:"POST",
+
+headers:{
+"Content-Type":"application/json"
+},
+
+body:JSON.stringify(data)
+
+});
+
+const result = await res.json();
+
+alert(result.message);
+
+if(res.ok){
+
+localStorage.setItem(
+"token",
+result.token
+);
+
+window.location.href =
+"https://finicky-flyover-baggie.ngrok-free.dev/dashboard";
+
+}
+
+}catch(error){
+
+console.log(error);
+
+alert("Server Error");
+
+}
+
+}
+
+</script>
+
+</body>
+</html>
